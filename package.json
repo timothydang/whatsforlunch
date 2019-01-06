@@ -1,0 +1,46 @@
+{
+  "name": "whatsforlunch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
+    "build": "preact build --template src/index.html --json",
+    "serve": "preact build --template src/index.html && preact serve",
+    "dev": "preact watch --https true --template src/index.html",
+    "lint": "eslint src",
+    "analyze": "mv stats.json build/ && node ./node_modules/webpack-bundle-analyzer/lib/bin/analyzer.js build/stats.json"
+  },
+  "author": "Timothy Dang",
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": "eslint-config-airbnb-standard"
+  },
+  "eslintIgnore": [
+    "build/*"
+  ],
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.6.0",
+    "cssnano": "^4.1.8",
+    "eslint": "^5.11.1",
+    "eslint-config-airbnb-standard": "^2.1.6",
+    "if-env": "^1.0.4",
+    "node-sass": "^4.11.0",
+    "postcss-import": "^12.0.1",
+    "postcss-preset-env": "^6.5.0",
+    "preact-cli": "^2.2.1",
+    "preact-cli-plugin-critical-css": "^0.1.0",
+    "preact-cli-plugin-fast-async": "^1.0.1",
+    "preact-cli-postcss": "^1.1.1",
+    "sass-loader": "^7.1.0",
+    "webpack-bundle-analyzer": "^3.0.3"
+  },
+  "dependencies": {
+    "mini.css": "^3.0.1",
+    "preact": "^8.4.2",
+    "preact-compat": "^3.18.4",
+    "preact-router": "^2.6.1",
+    "spectre.css": "^0.5.8",
+    "unistore": "^3.1.0"
+  }
+}

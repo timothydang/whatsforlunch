@@ -1,0 +1,8 @@
+@import '~style/helpers';
+
+.card {
+  animation: all .1s linear;
+}
+.card.choosen {
+  border: 1px solid red;
+}
