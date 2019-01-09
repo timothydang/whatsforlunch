@@ -10,7 +10,7 @@ import actions from "../store/actions";
 
 class App extends Component {
   loadLocations = () => {
-    this.props.setup();
+    // this.props.setup();
     this.props.loadLocations();
   };
 

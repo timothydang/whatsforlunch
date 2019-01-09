@@ -7,9 +7,9 @@ let actions = store => ({
     return { isLoading: false };
   },
 
-  setup: () => {
-    return { airtable: new Airtable({apiKey: 'keynEkg9mTCqUEmeS'}).base('appPGJjIg85b7mOdc') };
-  },
+  // setup: () => {
+  //   return { airtable: new Airtable({apiKey: 'keynEkg9mTCqUEmeS'}).base('appPGJjIg85b7mOdc') };
+  // },
 
   toggleSuggesting: (state) => {
     return { isSuggesting: !state.isSuggesting };
@@ -21,16 +21,13 @@ let actions = store => ({
   },
 
   async loadLocations(state) {
-    await state.airtable('Locations').select().firstPage((error, records) => {
+    await fetch(`https://whatsforlunch.glitch.me/api/locations`).then((records) => {
       store.setState({ workplaces: records, isLoading: false });
     });
   },
 
   async loadLunchOptions (state, locationName) {
-    await state.airtable(locationName).select({
-      sort: [{field: "rating", direction: "desc"}],
-      filterByFormula: "NOT({active} = '')"
-    }).firstPage((error, records) => {
+    await fetch(`https://whatsforlunch.glitch.me/api/${locationName}/list`).then((records) => {
       store.setState({ currentOptions: records, isLoading: false });
     });
   }
