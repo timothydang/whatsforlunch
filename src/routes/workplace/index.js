@@ -89,16 +89,16 @@ class Workplace extends Component {
   checkAndLoadLunchOptions(newState) {
     if (this.isValidWorkplace(this.props.location, this.state.workplaces)) {
       this.props.startLoading();
-      this.props.loadLunchOptions(this.state.currentWorkplace.get('name'))
+      this.props.loadLunchOptions(this.state.currentWorkplace.fields.name)
     } else {
       this.props.showFatalError();
     };
   }
 
   isValidWorkplace(location, workplaces) {
-    const workplaceNames = workplaces.map((workplace) => workplace.get('shortUrl'));
+    const workplaceNames = workplaces.map((workplace) => workplace.fields.shortUrl);
     const workplaceIndex = workplaceNames.indexOf(location);
-    if (workplaceIndex > 0) {
+    if (workplaceIndex !== -1) {
       this.setState({
         currentWorkplace: workplaces[workplaceIndex]
       });
@@ -110,7 +110,7 @@ class Workplace extends Component {
 		return (
 			<div>
         {
-          currentWorkplace ? <h2>{currentWorkplace.get('name')}</h2> : '' 
+          currentWorkplace ? <h2>{currentWorkplace.fields.name}</h2> : '' 
         }
 
         <div class="row">
@@ -118,10 +118,10 @@ class Workplace extends Component {
           props.currentOptions.map((option, index) => (
             <div class={`${style.card} ${highlightedOption === index ? style.choosen : ''}`} data-id={`option-${index}`}>
               <div class="section">
-                <h3 class="doc">{option.get('name')}</h3>
+                <h3 class="doc">{option.fields.name}</h3>
                 <ul>
                   {
-                    option.get('cuisine').map(cuisine => (
+                    option.fields.cuisine.map(cuisine => (
                       <li>{ cuisine }</li>
                     ))
                   }

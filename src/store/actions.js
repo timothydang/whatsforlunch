@@ -21,13 +21,17 @@ let actions = store => ({
   },
 
   async loadLocations(state) {
-    await fetch(`https://whatsforlunch.glitch.me/api/locations`).then((records) => {
+    await fetch(`https://whatsforlunch.glitch.me/api/locations`).then((response) => {
+      return response.json();
+    }).then((records) => {
       store.setState({ workplaces: records, isLoading: false });
     });
   },
 
   async loadLunchOptions (state, locationName) {
-    await fetch(`https://whatsforlunch.glitch.me/api/${locationName}/list`).then((records) => {
+    await fetch(`https://whatsforlunch.glitch.me/api/${locationName}/list`).then((response) => {
+      return response.json();
+    }).then((records) => {
       store.setState({ currentOptions: records, isLoading: false });
     });
   }

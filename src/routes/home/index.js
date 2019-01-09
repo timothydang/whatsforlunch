@@ -9,11 +9,11 @@ class Home extends Component {
 		return (
 			<div class={style.home}>
         {
-          // console.warn(props)
+          console.warn(props)
         }
         {
           props.workplaces.map(workplace => (
-            <a href={`/workplace/${workplace.get('shortUrl')}`}>{workplace.get('name')}</a>
+            <a href={`/workplace/${workplace.fields.shortUrl}`}>{workplace.fields.name}</a>
           ))
         }
 
